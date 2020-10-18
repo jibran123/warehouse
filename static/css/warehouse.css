@@ -1,0 +1,38 @@
+body{
+    background-image: url('/static/images/background.jpg');
+    background-repeat: no-repeat;
+  }
+  .productFrame {
+    border : 1px dotted grey !important;
+    border-radius: 18px;
+    margin-top: 20px;
+    margin-left: 87px;
+    background-color: beige;
+  }
+  .manageButton {
+    margin : 25px !important;
+    background-color: #232623;
+    border-color: #232623;
+  }
+  .manageButton a:link {
+    text-decoration: none;
+    color: #fff;
+  }
+  .uploadFile {
+    margin: 9px;
+    background: #ffb300;
+    width: auto;
+    height: 44px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .tabSize{
+    width: 569px;
+    text-align: center;
+  }
+  .buyButton{
+    padding:10px;
+  }
+  .message{
+    color: #699b36;
+  }

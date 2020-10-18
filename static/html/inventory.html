@@ -1,0 +1,58 @@
+<div class="container productFrame">
+	<div class="col-lg-12 form-inline">
+		<div class="col-lg-10"><h1>Manage Warehouse</h1></div>
+		<div class="col-lg-2"><button class="btn btn-dark manageButton"><a href="#">Purchase Product</a></button></div>
+	</div>
+	<div ng-show="loading"><h3>Loading...</h3></div>
+    <ul class="nav nav-tabs">
+        <li class="active tabSize"><a data-toggle="tab" href="#inventory">Inventory</a></li>
+        <li class="tabSize"><a data-toggle="tab" href="#product">Products</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="inventory" class="tab-pane fade in active">
+        <div class="col-lg-12 form-inline">
+            <div class="col-lg-5"><h3>Available Inventory</h3></div>
+            <div class="col-lg-7">
+                <form enctype="multipart/form-data"  ng-submit="uploadInventory()">
+                    <div class="col-lg-12 uploadFile">
+                        <div class="col-lg-10"><input type=file accept=".json" name='file' onchange="angular.element(this).scope().uploadFile(this.files)"/></div>
+                        <div class="col-lg-2"><button ng-hide="!uploadButton" class="btn btn-success" type="submit">Upload</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+          <table st-table="display_records"  st-safe-src="inventory" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Article Id</th>
+                    <th>Article Name</th>
+                    <th>Available Count</th>
+                </tr>
+                <tr>
+                    <th colspan="5">
+                        <input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="inv in display_records">
+                    <td>{{inv.art_id}}</td>
+                    <td>{{inv.art_name}}</td>
+                    <td>{{inv.availableCount}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-center">
+                        <div st-pagination="" st-items-by-page=5></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="col-lg-12 buyButton">
+            <div ng-hide="uploadMessage == ''" class="col-lg-offset-4"><span class="message"><b>{{uploadMessage}}</b></span></div>
+        </div>
+        </div>
+      </div>
+    </div>
+</div>

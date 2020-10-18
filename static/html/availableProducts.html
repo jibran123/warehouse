@@ -1,0 +1,44 @@
+<div class="container productFrame">
+
+	<div class="col-lg-12 form-inline">
+		<div class="col-lg-10"><h1>Available Products</h1></div>
+		<div class="col-lg-2"><button class="btn btn-dark manageButton"><a href="#inventory">Manage Warehouse</a></button></div>
+	</div>
+	<div ng-show="loading"><h3>Loading...</h3></div>
+	<table st-table="display_records"  st-safe-src="availableProducts" class="table table-striped">
+	<thead>
+		<tr>
+            <th>Product Name</th>
+            <th>Available Count</th>
+            <th>Item Selected</th>
+		</tr>
+		<tr>
+			<th colspan="5">
+				<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr st-select-row="row" st-select-mode="multiple" ng-repeat="p in display_records">
+			<td>{{p.productName}}</td>
+			<td>{{p.productCount}}</td>
+			<td>
+				<button class="btn btn-danger" ng-click="decrement(p)" class='qtyminus' ng-disabled="p.itemSelected<=0">-</button>
+				<input ng-model="p.itemSelected" type='text' disabled/>
+				<button class="btn btn-success" ng-click="increment(p)" ng-disabled="p.productCount<1">+</button>
+			</td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3" class="text-center">
+				<div st-pagination="" st-items-by-page=5></div>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+<div class="col-lg-12 buyButton">
+	<div ng-hide="buyMessage == ''" class="col-lg-offset-4"><span class="message"><b>{{buyMessage}}</b></span></div>
+	<div class="col-lg-offset-5"><button class="btn btn-success" ng-disabled="!isProductSelected" ng-click="buyProducts()">Buy Now</button></div>
+</div>
+</div>
